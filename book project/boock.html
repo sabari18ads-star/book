@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Little Prince - 3D Book Visual</title>
+    <style>
+        /* Basic Page Setup */
+        body {
+            background-color: #050a14; /* Dark space-like background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; /* Classic book font */
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Ambient Stars Background (CSS only) */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            box-shadow: 10vw 20vh white, 30vw 50vh white, 70vw 80vh white, 90vw 10vh white, 50vw 40vh white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* 3D Container */
+        .book-container {
+            perspective: 1500px; /* Gives depth to the 3D effect */
+        }
+
+        /* The Book Object */
+        .book {
+            width: 350px;
+            height: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth turning animation */
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        /* Flip Effect on Hover */
+        .book-container:hover .book {
+            transform: rotateY(-160deg); /* Opens the book */
+        }
+
+        /* Common styles for Cover and Page */
+        .front, .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 0 5px 5px 0;
+            backface-visibility: hidden; /* Hides the back when turned */
+            box-sizing: border-box;
+        }
+
+        /* Front Cover Styling */
+        .front {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Deep blue gradient */
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            border-left: 10px solid #142850; /* Book spine appearance */
+        }
+
+        .front-title {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+            color: #f1c40f; /* Gold color for title */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .front-author {
+            font-style: italic;
+            font-size: 16px;
+            color: #ecf0f1;
+        }
+
+        /* Simple CSS Crown Icon */
+        .crown-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            color: #f1c40f;
+        }
+
+        .hover-instruction {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1px;
+        }
+
+        /* Inside Page Styling */
+        .page {
+            background-color: #fdfcfc; /* Slightly off-white paper color */
+            color: #2c3e50; /* Darker text for readability */
+            padding: 40px;
+            z-index: 1;
+            transform: rotateY(0deg); /* Sits behind the cover */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-left: 1px solid #e0e0e0;
+        }
+
+        .page-header {
+            font-size: 24px;
+            color: #1e3c72;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1c40f;
+            padding-bottom: 10px;
+        }
+
+        .page-content p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* The Famous Quote Styling */
+        .famous-quote {
+            margin-top: auto; /* Pushes to the bottom */
+            font-style: italic;
+            color: #7f8c8d;
+            border-left: 4px solid #f1c40f;
+            padding-left: 15px;
+            font-size: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="book-container">
+        <div class="book">
+            <div class="front">
+                <p class="front-author">Antoine de Saint-Exupéry</p>
+                <div>
+                    <h1 class="front-title">The Little</h1>
+                    <h1 class="front-title">Prince</h1>
+                    <div class="crown-icon">👑</div>
+                </div>
+                <p class="hover-instruction">HOVER TO READ</p>
+            </div>
+
+            <div class="page">
+                <h2 class="page-header">A Summary</h2>
+                <div class="page-content">
+                    <p>
+                        A pilot crashes in the Sahara Desert and meets a young boy, the Little Prince, from another planet.
+                    </p>
+                    <p>
+                        As the Prince narrates his journey through various asteroids, he shares insightful observations about life, adults, and the human condition.
+                    </p>
+                    <p>
+                        Through his friendship with a fox, he learns the profound meaning of love, connection, and responsibility.
+                    </p>
+                </div>
+                
+                <div class="famous-quote">
+                    "It is only with the heart that one can see rightly; what is essential is invisible to the eye."
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
